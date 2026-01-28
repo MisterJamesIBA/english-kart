@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Kart</title>
+
+    <link rel="stylesheet" href="./css/select.css">
+</head>
+
+<body>
+    <div id="teamSelectDiv">
+
+        <input class="teamSelectRadio" type="radio" id="teamNumb2" name="teamNumb">
+        <label class="teamSelectLabel" for="teamNumb2">
+            <img src="./img/number/two.png" alt="">
+        </label>
+
+        <input class="teamSelectRadio" type="radio" id="teamNumb3" name="teamNumb">
+        <label class="teamSelectLabel" for="teamNumb3">
+            <img src="./img/number/three.png" alt="">
+        </label>
+
+        <input class="teamSelectRadio" type="radio" id="teamNumb4" name="teamNumb">
+        <label class="teamSelectLabel" for="teamNumb4">
+            <img src="./img/number/four.png" alt="">
+        </label>
+
+        <input class="teamSelectRadio" type="radio" id="teamNumb5" name="teamNumb">
+        <label class="teamSelectLabel" for="teamNumb5">
+            <img src="./img/number/five.png" alt="">
+        </label>
+
+        <button type="button" onclick="selectTeamNumb()">
+            <img src="./img/number/enter.png" alt="enter">
+        </button>
+    </div>
+
+    <div id="charSelectDiv" class="hide">
+        <input id="boo" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="boo">
+            <img src="./img/character/boo.png" alt="">
+        </label>
+
+        <input id="bowser" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="bowser">
+            <img src="./img/character/bowser.png" alt="">
+        </label>
+
+        <input id="coupa" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="coupa">
+            <img src="./img/character/coupa.png" alt="">
+        </label>
+
+        <input id="curby" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="curby">
+            <img src="./img/character/curby.png" alt="">
+        </label>
+
+        <input id="donkey-kong" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="donkey-kong">
+            <img src="./img/character/donkey-kong.png" alt="">
+        </label>
+
+        <input id="goomba" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="goomba">
+            <img src="./img/character/goomba.png" alt="">
+        </label>
+
+        <input id="inkling" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="inkling">
+            <img src="./img/character/inkling.png" alt="">
+        </label>
+
+        <input id="link" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="link">
+            <img src="./img/character/link.png" alt="">
+        </label>
+
+        <input id="luigi" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="luigi">
+            <img src="./img/character/luigi.png" alt="">
+        </label>
+
+        <input id="mario" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="mario">
+            <img src="./img/character/mario.png" alt="">
+        </label>
+
+        <input id="peach" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="peach">
+            <img src="./img/character/peach.png" alt="">
+        </label>
+
+        <input id="rosalina" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="rosalina">
+            <img src="./img/character/rosalina.png" alt="">
+        </label>
+
+        <input id="toad" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="toad">
+            <img src="./img/character/toad.png" alt="">
+        </label>
+
+        <input id="walauigi" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="walauigi">
+            <img src="./img/character/walauigi.png" alt="">
+        </label>
+
+        <input id="wario" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="wario">
+            <img src="./img/character/wario.png" alt="">
+        </label>
+
+        <input id="yoshi" class="charSelectRadio" type="radio" name="charSelect">
+        <label class="charSelectLabel" for="yoshi">
+            <img src="./img/character/yoshi.png" alt="">
+        </label>
+
+
+        <button onclick="pickChar()">
+            <img src="./img/number/enter.png" alt="">
+        </button>
+    </div>
+
+    <div class="hide" id="gameDiv">
+        <div class="board-root">
+            <div class="board">
+                <img class="board-img" src="./img/board/board.jpg" alt="background">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="control-root">
+                <button id="questionBtn" class="ctrl-btn">question</button>
+                <button id="itemBtn" class="ctrl-btn">
+                    item
+                </button>
+                <button id="diceBtn" class="ctrl-btn">
+                    dice
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+    <div id="boardControlBox" class="hide middle-div-outer">
+        <div class="middle-div-inner">
+            <div class="hide" id="question-box">
+                <h1>Question</h1>
+                <p>question text</p>
+                <button>A</button>
+                <button>B</button>
+                <button>C</button>
+                <button>D</button>
+            </div>
+            <div class="hide" id="item-box">
+                <h1>Item</h1>
+                <img onclick="getItem()" id="itemImg" src="./img/item/lightning.png" alt="">
+            </div>
+            <div class="hide" id="dice-box">
+                <h1>Dice</h1>
+                <img id="diceImg" onclick="rollDice()" src="./img/number/one.png" alt="">
+            </div>
+
+            <button id="closeBtn">Close</button>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
