@@ -41,6 +41,11 @@ html, body {
     width: 100%;
 }
 
+.control-root button img {
+    width: 100%;
+    max-height: 80%;
+}
+
 .hide {
     display: none;
 }
@@ -57,6 +62,18 @@ pop in screens
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.close-btn{
+    width: 40%;
+    height: 30%;
+    
+}
+
+.close-btn img{
+    width: 80%;
+    height: 80%;
+    margin: 5%;
 }
 
 .char-box {
@@ -87,4 +104,8 @@ pop in screens
 #boardSelect img {
     width: 20%;
     height: 20%;
+}
+
+#diceImg {
+    width: 20%;
 }

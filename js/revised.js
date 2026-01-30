@@ -76,9 +76,23 @@ const QUEST = [
 ]
 
 
+// numbers
+const NUMBERS = [
+    "./img/number/one.png",
+    "./img/number/two.png",
+    "./img/number/three.png",
+    "./img/number/four.png",
+    "./img/number/five.png",
+    "./img/number/six.png",
+    "./img/number/seven.png",
+    "./img/number/eight.png",
+    "./img/number/nine.png",
+]
 
 
-const DIM = (window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight) * 0.1;
+
+const DIM = Math.floor((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) * 0.1);
+console.log(DIM);
 
 /*
 functions
@@ -164,6 +178,8 @@ window.onload = function () {
     const diceBtn = this.document.querySelector("#diceBtn");
     const diceSelect = this.document.querySelector("#diceSelect");
     const closeDice = this.document.querySelector("#closeDice");
+    const diceImg = this.document.querySelector("#diceImg");
+
 
     /*
      
@@ -207,8 +223,6 @@ window.onload = function () {
             ctx.drawImage(char.img, char.x, char.y, DIM, DIM);
         });
     }
-
-
 
     /*
 
@@ -321,8 +335,14 @@ window.onload = function () {
         diceSelect.classList.remove('hide');
     });
 
+    // dice img change when clicked
+    diceImg.addEventListener('click', ()=>{
+        diceImg.src = NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
+    });
+
     closeDice.addEventListener("click", () => {
         diceSelect.classList.add('hide');
+        diceImg.src="./img/dice.png"
     });
 
 
