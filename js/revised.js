@@ -30,6 +30,15 @@ const ITEMS = [
     "./img/item/tripple mushroom.png",
 ]
 
+const ITEM_EFFECT = [
+    "First place -3",
+    "Go to first place",
+    "Go ahead +5",
+    "Everyone else minus -1",
+    "Go ahead +1",
+    "Go ahead +3"
+];
+
 // questions
 const QUEST = [
     "What kind of music do you like?",
@@ -91,7 +100,7 @@ const NUMBERS = [
 
 
 
-const DIM = Math.floor((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) * 0.1);
+const DIM = Math.floor((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) * 0.08);
 console.log(DIM);
 
 /*
@@ -173,6 +182,7 @@ window.onload = function () {
     const itemSelect = this.document.querySelector("#itemSelect");
     const itemImg = this.document.querySelector("#itemImg");
     const closeItem = this.document.querySelector("#closeItem");
+    const itemText = this.document.querySelector("#itemText");
 
     // dice box
     const diceBtn = this.document.querySelector("#diceBtn");
@@ -323,7 +333,9 @@ window.onload = function () {
     // item
     itemBtn.addEventListener("click", () => {
         itemSelect.classList.remove('hide');
-        itemImg.src = ITEMS[Math.floor(Math.random() * ITEMS.length)];
+        let index = Math.floor(Math.random() * ITEMS.length);
+        itemImg.src = ITEMS[index];
+        itemText.innerHTML = ITEM_EFFECT[index];
     });
 
     closeItem.addEventListener("click", () => {
@@ -337,7 +349,7 @@ window.onload = function () {
 
     // dice img change when clicked
     diceImg.addEventListener('click', ()=>{
-        diceImg.src = NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
+        diceImg.src = NUMBERS[Math.floor(Math.random() * 5)];
     });
 
     closeDice.addEventListener("click", () => {

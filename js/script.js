@@ -1,3 +1,44 @@
+/*
+const variables
+*/
+const NUMBERS = [
+    "./img/number/one.png",
+    "./img/number/two.png",
+    "./img/number/three.png",
+    "./img/number/four.png",
+    "./img/number/five.png",
+    "./img/number/six.png",
+    "./img/number/seven.png",
+    "./img/number/eight.png",
+    "./img/number/nine.png",
+]
+
+
+const ITEMS = [
+    "./img/item/blue shell.png",
+    "./img/item/bullet bill.png",
+    "./img/item/gold mushroom.png",
+    "./img/item/lightning.png",
+    "./img/item/mushroom.png",
+    "./img/item/tripple mushroom.png",
+]
+
+const ITEM_EFFECT = [
+    "First place -3",
+    "Go to first place",
+    "Go ahead +5",
+    "Everyone else minus -1",
+    "Go ahead +1",
+    "go ahead +3"
+];
+
+/*
+
+variables
+
+*/
+
+
 var teamNumb;
 
 var selectChar = [];
@@ -241,28 +282,6 @@ function pickChar() {
 
 }
 
-
-const NUMBERS = [
-    "./img/number/one.png",
-    "./img/number/two.png",
-    "./img/number/three.png",
-    "./img/number/four.png",
-    "./img/number/five.png",
-    "./img/number/six.png",
-    "./img/number/seven.png",
-    "./img/number/eight.png",
-    "./img/number/nine.png",
-]
-
-
-const ITEMS = [
-    "./img/item/blue shell.png",
-    "./img/item/bullet bill.png",
-    "./img/item/gold mushroom.png",
-    "./img/item/lightning.png",
-    "./img/item/mushroom.png",
-    "./img/item/tripple mushroom.png",
-]
 
 function rollDice(){
 
