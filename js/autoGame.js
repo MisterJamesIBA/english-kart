@@ -20,6 +20,8 @@ const CHAR_LIST = [
     "yoshi",
 ]
 
+const DIM = (window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight) * 0.08;
+
 
 let postList = [
     {
@@ -413,6 +415,7 @@ const enterChar = () => {
 
     if (charList.length >= charNumb) {
         hideChar();
+        main();
     }
 
 }
@@ -425,9 +428,25 @@ const main = () => {
     canvas.height = window.innerHeight;
 
 
+    setInterval(() => {
+        let pos = postList[charList[0].index];
+        charList[0].x = pos.x;
+        charList[0].y = pos.y;
+        charList[0].index += 1;
+
+        if (charList[0].index >= postList.length) {
+            charList[0].index = 0;
+        }
+    }, 1000);
+
+
     const anim = () => {
 
 
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        charList.forEach((char) => {
+            ctx.drawImage(char.img, char.x * canvas.width - DIM / 2, char.y * canvas.height - DIM / 2, DIM, DIM);
+        });
 
         window.requestAnimationFrame(anim);
     }
