@@ -1,76 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
 </head>
-
 <body>
-    <div class="game-root">
-        <div class="board-root">
-            <img id="backImg" src="./img/board/board.jpg" alt="">
-            <canvas id="canvas"></canvas>
-        </div>
-        <div class="control-root">
-            <button id="charBtn">
-                <img src="./img/character/mario.png" alt="">
-                Character</button>
-            <button id="boardBtn">
-                Board</button>
-            <button id="questBtn">
-                <img src="./img/question.png" alt="">
-                Question</button>
-            <button id="itemBtn">
-                <img src="./img/item/mushroom.png" alt="">
-                Item</button>
-            <button id="diceBtn">
-                <img src="./img/dice.png" alt="">
-                Dice</button>
-        </div>
-    </div>
-
-    <div class="pop-up hide" id="charSelect">
-
-        <div class="char-box"></div>
-
-        <button class="close-btn" id="charEnterBtn"><img src="./img/text/enter.png" alt=""></button>
-    </div>
-
-    <div class="pop-up hide" id="boardSelect">
-        <img class="board-img" onclick="setBackground('board')" src="./img/board/board.jpg" alt="">
-        <img class="board-img" onclick="setBackground('generic')" src="./img/board/generic.webp" alt="">
-        <img class="board-img" onclick="setBackground('monopoly')" src="./img/board/monopoly.jpg" alt="">
-
-
-        <button class="close-btn" id="closeBoard"><img src="./img/text/close.png" alt="close"></button>
-    </div>
-
-    <div class="pop-up hide" id="questSelect">
-        <h2>Question Text</h2>
-
-        <h4 id="questText">qeustion text will apear here</h4>
-
-        <button class="close-btn" id="closeQuest"><img src="./img/text/close.png" alt="close"></button>
-    </div>
-
-    <div class="pop-up hide" id="itemSelect">
-        <h2>Item</h2>
-        <img id="itemImg" style="width: 20%;" src="./img/item/blue shell.png" alt="">
-        <p id="itemText"></p>
-        <button class="close-btn" id="closeItem"><img src="./img/text/close.png" alt="close"></button>
-    </div>
-
-      <div class="pop-up hide" id="diceSelect">
-            <h2>Dice</h2>
-            <img id="diceImg" src="./img/dice.png" alt="">
-            <p>Tap dice to roll</p>
-            <button class="close-btn" id="closeDice"><img src="./img/text/close.png" alt="close"></button>
-      </div>
-
-    <script src="./js/revised.js"></script>
+    <a href="./revised.html">Revised</a>
+    <a href="./autoGame.html">Automatic</a>
 </body>
-
 </html>

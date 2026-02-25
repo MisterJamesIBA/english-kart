@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Load JSON Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="title">Loading...</h1>
+    <ul id="list"></ul>
+    <p id="error" class="error"></p>
+
+    <script>
+        /**
+         * Load JSON file and display it in HTML
+         */
+        async function loadJSON() {
+            try {
+                const response = await fetch('data.json', { cache: 'no-cache' }); // Prevent caching during dev
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Display title
+                document.getElementById('title').textContent = data.title || 'No Title';
+
+                // Display items
+                const list = document.getElementById('list');
+                list.innerHTML = ''; // Clear old content
+                if (Array.isArray(data.items)) {
+                    data.items.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = `${item.name} - ¥${item.price}`;
+                        list.appendChild(li);
+                    });
+                } else {
+                    list.innerHTML = '<li>No items found</li>';
+                }
+
+            } catch (error) {
+                document.getElementById('error').textContent = 'Error loading JSON: ' + error.message;
+                console.error(error);
+            }
+        }
+
+        // Load JSON when page loads
+        loadJSON();
+    </script>
+
+</body>
+
+</html>

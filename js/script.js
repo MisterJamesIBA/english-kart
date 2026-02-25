@@ -43,7 +43,7 @@ var teamNumb;
 
 var selectChar = [];
 
-const DIM = (window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight) * 0.1;
+const DIM = (window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight) * 0.08;
 
 
 function getTeamNumb() {
@@ -173,7 +173,7 @@ function pickChar() {
 
     selectChar.forEach((char, index) => {
         let img = document.createElement('img');
-        img.src = src = `./img/character/${char}.png`;
+        img.src = `./img/character/${char}.png`;
         dragChar.push({
             x: DIM * index,
             y: 50,

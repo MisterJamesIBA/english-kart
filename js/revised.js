@@ -28,6 +28,7 @@ const ITEMS = [
     "./img/item/lightning.png",
     "./img/item/mushroom.png",
     "./img/item/tripple mushroom.png",
+    "./img/item/green shell.png",
 ]
 
 const ITEM_EFFECT = [
@@ -36,54 +37,91 @@ const ITEM_EFFECT = [
     "Go ahead +5",
     "Everyone else minus -1",
     "Go ahead +1",
-    "Go ahead +3"
+    "Go ahead +3",
+    "Go back -1"
 ];
 
 // questions
-const QUEST = [
-    "What kind of music do you like?",
-    "Where would you like to travel?",
-    "What kind of music do you like?",
-    "What book do you like?",
-    "What sport do you like?",
-    "Do you like dancing or singing?",
-    "My name is ___ and I like ____.",
-    "What sport or activity do you like and why?",
-    "What would you rather have, a boat or a plane?",
-    "What season do you like best? winter, spring, fall, or summer? Why?",
-    "What super power would you like to have?",
-    "Name a movie you like.",
-    "Name a TV show you like.",
-    "If you were going to the moon what would you take?",
-    "What foods do you like?",
-    "What place would you visit? Why?",
-    "What food do you like best and why?",
-    "What school subject do you like best?",
-    "What holiday do you like best and why?",
-    "What holiday do you enjoy most?",
-    "What do you like to do in warm weather?",
-    "What do you like to do in cold weather?",
-    "What do you want to be when you are older?",
-    "Do you have a pet?",
-    "What makes you happy?",
-    "What makes you sad?",
-    "Who is the athlete you like best?",
-    "What kind of ice cream do you like?",
-    "What subject do you like?",
-    "What game do you like to play?",
-    "Name something you want to buy?",
-    "What is your favotite English word?",
-    "What is your favorite day of the week?",
-    "What dessert do you like?",
-    "What vegetable do you like?",
-    "What time do you go to sleep?",
-    "What time do you wake up?",
-    "What is your favorite animal?",
-    "What is your favorite holliday?",
-    "What's your name? Why did you chose it?",
-    "What is your favorite fruit?"
-]
+const QUEST = {
+    "EIEKEN3":[
+        "How many hours do you usually study every day?",
+        "How many people do you have in your family?",
+        "What are you going to do after this (interview)?",
+        "What are you planning to do this spring(winter, summer)?",
+        "What city would you like to visit in the future?",
+        "What country do you want to go to?",
+        "What did you do last night?",
+        "What did you do yesterday?",
+        "What did you eat this morning?",
+        "What do you enjoy on your holidays?",
+        "What do you like to do on your vacation?",
+        "What do you like to do when the weather is hot?",
+        "What do you often talk about with your family?",
+        "What do you usually do on Sunday?",
+        "What do you want to do next year?",
+        "What fruit do you love to eat?",
+        "What kind of animals do you like?",
+        "What kind of dreams do you have?",
+        "What kind of movies do you love to watch?",
+        "What kind of restaurants do you want to go to?",
+        "What kind of sports do you like to play?",
+        "What month of the year do you like the best?",
+        "What place would you like to visit in Japan?",
+        "What season do you like the best?",
+        "What time do you usually get up every morning?",
+        "What time will you go to bed tonight?",
+        "What time do you usually eat dinner?",
+        "Where do you often go in your free time?",
+        "Where do you often go on Sundays?",
+        "Where do you like to go with your family?",
+        "Where do you like to visit in Japan?",
+        "Where would you like to go on weekends?",
+        "Which do you like better, summer or winter?",
+        "Which do you like better, TV or the Internet?"
+    ],
+    "EIKENPRE2":[
+        "How do you usually go to the convenience store near your house?",
+        "How many hours do you study every day?",
+        "How many people do you have in your family?",
+        "How many times have you been on a plane?",
+        "What are you going to do after this test?",
+        "What are you planning to do this spring (winter, summer)?",
+        "What city would you like to visit in the future?",
+        "What country do you want to go to?",
+        "What did you do during your summer vacation?",
+        "What did you do last night?",
+        "What did you do yesterday?",
+        "What did you eat this morning?",
+        "What do you do to help your family?",
+        "What do you enjoy on your holidays?",
+        "What do you like to do on your vacation?",
+        "What time do you usually eat dinner?",
+        "Where are you going to go after this interview?",
+        "Where do you often go in your free time?",
+        "Where do you often go on Sundays?",
+        "Where do you like to go with your family?",
+        "Where do you want to visit in the future?",
+        "Where would you like to go on weekends?",
+        "Which do you like better, summer or winter?",
+        "Which do you like better, TV or the Internet?",
+        "Which do you like to go to, the mountains or the beaches?",
+        "Are you a student from any school?",
+        "Are you good at playing music?",
+        "Do you enjoy going shopping?",
+        "Do you enjoy reading books?",
+        "Do you enjoy studying English?",
+        "Do you have a mobile phone (smartphone)?",
+        "Do you have pets in your home?",
+        "Do you like studying in your free time?",
+        "Do you like to eat at home?",
+        "Do you like to swim?",
+        "Do you like to watch TV?"
+    ]
 
+};
+
+
+// selecection questions
 
 // numbers
 const NUMBERS = [
@@ -153,6 +191,22 @@ const setBackground = (src) => {
     //"./img/board/board.jpg"
 }
 
+const loadJson = async () => {
+    try {
+        const response = await fetch('../json/interview.json', { cache: 'no-cache' }); // Prevent caching during dev
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        console.log(data);
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 window.onload = function () {
 
@@ -176,6 +230,7 @@ window.onload = function () {
     const questSelect = this.document.querySelector("#questSelect");
     const questText = this.document.querySelector("#questText");
     const closeQuest = this.document.querySelector("#closeQuest");
+    const levelSelect = this.document.querySelector("#levelSelect");
 
     // item box
     const itemBtn = this.document.querySelector("#itemBtn");
@@ -234,13 +289,32 @@ window.onload = function () {
         });
     }
 
+    const selectQuest = () => {
+        let select;
+        switch(levelSelect.value){
+            case "3":
+                select = QUEST.EIEKEN3;
+                break;
+            case "p2":
+                select = QUEST.EIKENPRE2;
+                break;
+            default:
+                select = QUEST.EIEKEN3;
+                break;
+        }
+        copyQuest = JSON.parse(JSON.stringify(select));
+        genQuestion();
+    }
+
+    selectQuest();
+
     /*
 
     event listener
 
     */
 
-    window.addEventListener('resize', ()=>{
+    window.addEventListener('resize', () => {
         canvas.width = boardRoot.clientWidth;
         canvas.height = boardRoot.clientHeight;
         drawChar();
@@ -255,6 +329,12 @@ window.onload = function () {
         console.log(charList);
         charSelect.classList.add('hide');
         drawChar();
+    });
+
+
+
+    levelSelect.addEventListener("change", ()=>{
+        selectQuest();
     });
 
 
@@ -323,7 +403,7 @@ window.onload = function () {
     // question screen
     questBtn.addEventListener("click", () => {
         questSelect.classList.remove('hide');
-        questText.innerHTML = QUEST[Math.floor(Math.random() * QUEST.length)];
+        genQuestion();
     });
 
     closeQuest.addEventListener("click", () => {
@@ -348,16 +428,24 @@ window.onload = function () {
     });
 
     // dice img change when clicked
-    diceImg.addEventListener('click', ()=>{
+    diceImg.addEventListener('click', () => {
         diceImg.src = NUMBERS[Math.floor(Math.random() * 5)];
     });
 
     closeDice.addEventListener("click", () => {
         diceSelect.classList.add('hide');
-        diceImg.src="./img/dice.png"
+        diceImg.src = "./img/dice.png"
     });
 
 
     createPlayerInput();
 
+
+    function genQuestion() {
+        let randQuest = copyQuest.splice(Math.floor(Math.random() * copyQuest.length), 1);
+        questText.innerHTML = randQuest;
+        if (copyQuest.length == 0) {
+            selectQuest();
+        }
+    }
 }
