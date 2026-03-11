@@ -90,13 +90,27 @@
                 <button onclick="enterChar()"><img src="./img/text/enter.png" alt=""></button>
             </div>
             <div class="hide-box-inner hide" id="dice">
-                <p>char box</p>
+                <h2 id="turnText">Player turn text <span id="playerText"></span></h2>
+                
+                <div>
+                    <img id="diceResult" src="./img/dice.png" alt="">
+                </div>
+                
+                <button id="diceBtn"><img src="./img/text/roll.png" alt=""></button>
+                <button id="entrBtn" class="hide"><img src="./img/text/enter.png" alt=""></button>
             </div>
             <div class="hide-box-inner hide" id="item">
-                <p>item box</p>
+                <img src="./img/question.png" alt="">
+                <button id="itemBtn"><img src="./img/text/enter.png"></button>
             </div>
             <div class="hide-box-inner hide" id="question">
-                <p>dice box</p>
+                <h2>Quiz time</h2>
+                <h3 id="questText">Question text...</h3>
+
+                <button id="optiona">OPTION A</button>
+                <button id="optionb">OPTION B</button>
+                <button id="optionc">OPTION C</button>
+                <button id="optiond">OPTION D</button>
             </div>
         </div>
 

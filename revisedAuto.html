@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Auto</title>
+    <link rel="stylesheet" href="./css/autoRevised.css">
+</head>
+
+<body>
+    <!-- 
+    various popup screens in this game
+    -->
+
+    <!-- 
+        start screen
+    -->
+
+    <div id="startBox" class="hide-box hide">
+        <div class="hide-box-inner">
+            <img src="./img/text/english-kart.png" alt="English kart">
+            <br>
+            <button id="startGameBtn"><img src="./img/text/start.png" alt="start"></button>
+            <br>
+        </div>
+    </div>
+
+
+    <!-- 
+        select number of players screen screen
+    -->
+    <div id="numberBox" class="hide-box hide">
+        <div class="hide-box-inner">
+            <img id="howManyText" src="./img/text/how-many-teams.png" alt="how many teams">
+            <div id="numberSelectBox">
+                <input class="selectRadio" type="radio" id="teamNumb2" name="teamNumb">
+                <label class="selectLabel" for="teamNumb2">
+                    <img src="./img/number/two.png" alt="2">
+                </label>
+
+                <input class="selectRadio" type="radio" id="teamNumb3" name="teamNumb">
+                <label class="selectLabel" for="teamNumb3">
+                    <img src="./img/number/three.png" alt="3">
+                </label>
+
+                <input class="selectRadio" type="radio" id="teamNumb4" name="teamNumb">
+                <label class="selectLabel" for="teamNumb4">
+                    <img src="./img/number/four.png" alt="4">
+                </label>
+
+                <input class="selectRadio" type="radio" id="teamNumb5" name="teamNumb">
+                <label class="selectLabel" for="teamNumb5">
+                    <img src="./img/number/five.png" alt="5">
+                </label>
+            </div>
+            <button id="nmbrEntrBtn"><img src="./img/text/enter.png" alt=""></button>
+        </div>
+    </div>
+
+    <!-- 
+        select characters screen
+    -->
+    <div id="charBox" class="hide-box hide">
+        <div class="hide-box-inner">
+            <div id="charCon">
+                <div>
+                    <input name="char-select" type="radio" id="boo" class="char-check">
+                    <label class="char-check-label" for="boo"><img src="./img/character/boo.png"></label>
+                    <input name="char-select" type="radio" id="bowser" class="char-check">
+                    <label class="char-check-label" for="bowser"><img src="./img/character/bowser.png"></label>
+                    <input name="char-select" type="radio" id="coupa" class="char-check">
+                    <label class="char-check-label" for="coupa"><img src="./img/character/coupa.png"></label>
+                    <input name="char-select" type="radio" id="curby" class="char-check">
+                    <label class="char-check-label" for="curby"><img src="./img/character/curby.png"></label>
+                    <input name="char-select" type="radio" id="donkey-kong" class="char-check">
+                    <label class="char-check-label" for="donkey-kong"><img
+                            src="./img/character/donkey-kong.png"></label>
+                    <input name="char-select" type="radio" id="goomba" class="char-check">
+                    <label class="char-check-label" for="goomba"><img src="./img/character/goomba.png"></label>
+                    <input name="char-select" type="radio" id="inkling" class="char-check">
+                    <label class="char-check-label" for="inkling"><img src="./img/character/inkling.png"></label>
+                    <input name="char-select" type="radio" id="link" class="char-check">
+                    <label class="char-check-label" for="link"><img src="./img/character/link.png"></label>
+
+                </div>
+                <div>
+                    <input name="char-select" type="radio" id="luigi" class="char-check">
+                    <label class="char-check-label" for="luigi"><img src="./img/character/luigi.png"></label>
+                    <input name="char-select" type="radio" id="mario" class="char-check">
+                    <label class="char-check-label" for="mario"><img src="./img/character/mario.png"></label>
+                    <input name="char-select" type="radio" id="peach" class="char-check">
+                    <label class="char-check-label" for="peach"><img src="./img/character/peach.png"></label>
+                    <input name="char-select" type="radio" id="rosalina" class="char-check">
+                    <label class="char-check-label" for="rosalina"><img src="./img/character/rosalina.png"></label>
+                    <input name="char-select" type="radio" id="toad" class="char-check">
+                    <label class="char-check-label" for="toad"><img src="./img/character/toad.png"></label>
+                    <input name="char-select" type="radio" id="walauigi" class="char-check">
+                    <label class="char-check-label" for="walauigi"><img src="./img/character/walauigi.png"></label>
+                    <input name="char-select" type="radio" id="wario" class="char-check">
+                    <label class="char-check-label" for="wario"><img src="./img/character/wario.png"></label>
+                    <input name="char-select" type="radio" id="yoshi" class="char-check">
+                    <label class="char-check-label" for="yoshi"><img src="./img/character/yoshi.png"></label>
+                </div>
+            </div>
+            <button id="charEntrBtn"><img src="./img/text/enter.png" alt=""></button>
+        </div>
+    </div>
+    </div>
+
+    <!-- 
+        dice screen
+    -->
+
+    <div id="diceBox" class="hide-box">
+        <div class="hide-box-inner">
+            <h2>Player 3 please roll the dice!</h2>
+            <img id="resultImg" src="./img/dice.png" alt="">
+            <button id="rollBtn"><img src="./img/text/roll.png" alt=""></button>
+            <button id="rollNextBtn"><img src="./img/text/next.png" alt=""></button>
+        </div>
+    </div>
+
+    <!-- 
+        question screen
+    -->
+    <div id="questBox" class="hide-box hide">
+        <div class="hide-box-inner">
+
+        </div>
+    </div>
+
+    <!-- 
+        get item
+    -->
+    <div id="itemBox" class="hide-box hide">
+        <div class="hide-box-inner">
+
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

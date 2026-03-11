@@ -6,10 +6,10 @@ body,
     width: 100%;
     height: 100%;
     margin: 0;
+    touch-action: none;
 }
 
 .character {
-    touch-action: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -162,4 +162,46 @@ button img {
 .hide {
     display: none;
     visibility: collapse;
+}
+
+/*
+dice
+*/
+#dice {
+    display: flex;
+    flex-direction: column;
+}
+
+#dice h2 {
+    text-align: center;
+}
+
+#dice div {
+    height: 40%;
+    display: flex;
+}
+
+#dice img {
+    max-height: 100%;
+    margin: auto;
+    width: auto;
+}
+
+#diceBtn, #enterBtn {
+    height: 20%;
+}
+
+
+/*
+item/
+*/
+
+#item img{
+    margin: auto;
+    height: 20%;
+}
+
+#item button img{
+    margin: auto;
+    height: 20%;
 }

@@ -20,10 +20,65 @@ const CHAR_LIST = [
     "yoshi",
 ]
 
+// numbers
+const NUMBERS = [
+    "./img/number/one.png",
+    "./img/number/two.png",
+    "./img/number/three.png",
+    "./img/number/four.png",
+    "./img/number/five.png",
+    "./img/number/six.png",
+    "./img/number/seven.png",
+    "./img/number/eight.png",
+    "./img/number/nine.png",
+];
+
+const QUIZ = [
+    {
+        text: "Could you please bring me ( ) eggs. I want to make an omelet.",
+        answer: "a couple of ~",
+        options: [
+            "weather", "priest", "a couple of ~", "meaning"
+        ]
+    },
+    {
+        text: "Every morning, Peter ( )s some bread in the oven. They smell amazing.",
+        answer: "bake",
+        options: [
+            "bake", "gym", "personality", "traditional"
+        ]
+    },
+    {
+        text: "Could you please help me () this table? We need to bring it to the kitchen.",
+        answer: "carry",
+        options: [
+            "carry", "plant", "beside", "also"
+        ]
+    }
+];
+
+const ITEM = {
+    BLUE_SHELL: "./img/item/blue shell.png",
+    BULLET_BILL: "./img/item/bullet bill.png",
+    GOLD_MUSHROOM: "./img/item/gold mushroom.png",
+    LIGHTNING: "./img/item/lightning.png",
+    MUSHROOM: "./img/item/mushroom.png",
+    TRIPPLE_MUSHROOM: "./img/item/tripple mushroom.png",
+    GREEN_SHELL: "./img/item/green shell.png"
+}
+
+// items
+const ITEMS = [
+    ITEM.BLUE_SHELL, ITEM.BULLET_BILL, ITEM.GOLD_MUSHROOM, ITEM.LIGHTNING,
+    ITEM.MUSHROOM, ITEM.TRIPPLE_MUSHROOM, ITEM.GREEN_SHELL
+]
+
+
+
 const DIM = (window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight) * 0.08;
 
 
-let postList = [
+let posList = [
     {
         "x": 0.06330275229357799,
         "y": 0.8694968553459119
@@ -264,7 +319,7 @@ const getChar = () => {
             return char;
         }
     }
-    return char;
+    return -1;
 }
 
 const getPos = () => {
@@ -399,12 +454,10 @@ const enterChar = () => {
         return;
     }
 
-    console.log(char);
-
     let img = new Image();
     img.src = `./img/character/${char}.png`;
 
-    let start = postList[0];
+    let start = posList[0];
 
     charList.push({
         name: char,
@@ -420,38 +473,244 @@ const enterChar = () => {
 
 }
 
+const PHASE = {
+    QUESTION: 0,
+    DICE: 1,
+    ITEM: 2
+}
+
 const main = () => {
     let canvas = document.querySelector('canvas');
     let ctx = canvas.getContext('2d');
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // answer inputs
+    let questText = document.querySelector("#questText");
+    let optionA = document.querySelector("#optiona");
+    let optionB = document.querySelector("#optionb");
+    let optionC = document.querySelector("#optionc");
+    let optionD = document.querySelector("#optiond");
 
+    // get item
+    let itemBtn = document.querySelector("#itemBtn");
 
-    setInterval(() => {
-        let pos = postList[charList[0].index];
-        charList[0].x = pos.x;
-        charList[0].y = pos.y;
-        charList[0].index += 1;
+    // game control
+    let phase = PHASE.QUESTION;
+    let playerIndex = 0;
 
-        if (charList[0].index >= postList.length) {
-            charList[0].index = 0;
+    // buttons
+    let diceBtn = document.querySelector("#diceBtn");
+    let entrBtn = document.querySelector("#entrBtn");
+
+    // ui elements
+    let diceResult = document.querySelector('#diceResult');
+    let turnText = document.querySelector('#turnText');
+
+    let stepNumb = 30;
+    let rnd;
+    let quest;
+
+    charList = charList.sort(() => Math.random() - 0.5);
+
+    function startTurn() {
+        turnText.innerHTML = `TURN: ${charList[playerIndex].name}`;
+        diceBtn.classList.remove('hide');
+        entrBtn.classList.add('hide');
+        showDice()
+    }
+
+    const createQuest = () => {
+        // store the selected answer
+        quest = QUIZ[Math.floor(Math.random() * QUIZ.length)];
+        // set quest text
+        questText.innerHTML = quest.text;
+        // set button text
+        optionA.innerHTML = quest.options[0];
+        optionB.innerHTML = quest.options[1];
+        optionC.innerHTML = quest.options[2];
+        optionD.innerHTML = quest.options[3];
+        // show quest screen
+        showQuest();
+    }
+
+    const moveChar = (numb, pickIndex) => {
+        if (numb == 0) {
+            showDice();
+            return alert('move zero no ok');
         }
-    }, 1000);
+        let char = charList[pickIndex];
+
+        let moveList = [];
+
+        // the next index after move
+        let nextIndex = char.index + numb;
+
+        // next position
+        if (nextIndex < 0) {
+            nextIndex = 0;
+        }
+
+        if (nextIndex == char.index) {
+            showDice();
+            return alert('no move');
+        }
+
+        while (char.index != nextIndex) {
+
+            // get the direction either 
+            let dir = (nextIndex > char.index) ? 1 : -1;
+
+            let sIndex = char.index;
+            let eIndex = char.index + dir;
+            let sPos = posList[sIndex];
+            let ePos = posList[eIndex];
+            moveList.push(sPos);
+
+            let deltaX = (ePos.x - sPos.x) / stepNumb;
+            let deltaY = (ePos.y - sPos.y) / stepNumb;
+
+            for (let i = 0; i < stepNumb; i++) {
+                let x = sPos.x + deltaX * i;
+                let y = sPos.y + deltaY * i;
+                moveList.push({
+                    x, y
+                });
+            }
+
+            // move towards the intended index
+            char.index += dir;
+        }
+
+        let index = 0;
+
+        let handle = setInterval(() => {
+            let pos = moveList[index];
+            char.x = pos.x;
+            char.y = pos.y;
+            index++;
+            if (index >= moveList.length) {
+                clearInterval(handle);
+
+                if(phase == PHASE.DICE){
+                    // either show question 
+                    createQuest();
+                }
+                else {
+                    nextPlayer();
+                    phase = PHASE.DICE;
+                }
+                // or go to next turn
+            }
+        }, 50);
+
+    }
+
+
+    const nextPlayer = () => {
+        playerIndex += 1;
+        if (playerIndex >= charList.length) {
+            playerIndex = 0;
+        }
+        startTurn();
+    }
+
+    function checkAnswer(index) {
+        console.log(quest.options[index], quest.answer);
+        if (quest.options[index] == quest.answer) {
+            console.log('correct');
+            hideQuest();
+            showItem();
+        }
+    }
+
+    function useItem(selectItem) {
+
+        switch(selectItem){
+            case ITEM.BLUE_SHELL:
+                // first place minus three
+                break;
+            case ITEM.BULLET_BILL:
+                // go to first place
+                break;
+            case ITEM.GOLD_MUSHROOM:
+                moveChar(5, playerIndex);
+                break;
+            case ITEM.LIGHTNING:
+                for(let i = 0; i < charList.length; i++){
+                    let char = charList[i];
+                    if(i != playerIndex){
+                        moveChar(-1, i);
+                    }   
+                }
+                break;
+            case ITEM.MUSHROOM:
+                moveChar(1, playerIndex);
+                break;
+            case ITEM.TRIPPLE_MUSHROOM:
+                moveChar(3, playerIndex);
+                break;
+            case ITEM.GREEN_SHELL:
+                moveChar(-1, playerIndex);
+                break;
+        }
+
+    }
+
+
+    diceBtn.addEventListener('click', () => {
+        rnd = Math.floor(Math.random() * NUMBERS.length);
+        diceResult.src = NUMBERS[rnd];
+        // hideDice();
+        // moveChar(rnd);
+        diceBtn.classList.add('hide');
+        entrBtn.classList.remove('hide');
+    });
+
+    entrBtn.addEventListener('click', () => {
+        hideDice();
+        moveChar(rnd + 1, playerIndex);
+    });
+
+    // answer buttons
+    optionA.addEventListener('click', () => {
+        checkAnswer(0);
+    });
+    optionB.addEventListener('click', () => {
+        checkAnswer(1);
+    });
+    optionC.addEventListener('click', () => {
+        checkAnswer(2);
+    });
+    optionD.addEventListener('click', () => {
+        checkAnswer(3);
+    });
+
+    // item btn
+    itemBtn.addEventListener('click', () => {
+        console.log('get item');
+        phase = PHASE.ITEM;
+        let item = ITEMS[Math.floor(Math.random() * ITEMS.length)];
+        console.log(item);
+        useItem(item);
+    });
 
 
     const anim = () => {
-
-
         ctx.clearRect(0, 0, innerWidth, innerHeight);
         charList.forEach((char) => {
-            ctx.drawImage(char.img, char.x * canvas.width - DIM / 2, char.y * canvas.height - DIM / 2, DIM, DIM);
+            let x = char.x * canvas.width - DIM / 2;
+            let y = char.y * canvas.height - DIM / 2;
+            ctx.drawImage(char.img, x, y, DIM, DIM);
         });
 
         window.requestAnimationFrame(anim);
     }
 
+    // begin function calls
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
     window.requestAnimationFrame(anim);
+    startTurn();
 }
 
 /*
