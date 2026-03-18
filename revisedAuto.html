@@ -17,7 +17,9 @@
         start screen
     -->
 
-    <div id="startBox" class="hide-box hide">
+    <canvas id="canvas"></canvas>
+
+    <div id="startBox" class="hide-box">
         <div class="hide-box-inner">
             <img src="./img/text/english-kart.png" alt="English kart">
             <br>
@@ -112,7 +114,7 @@
         dice screen
     -->
 
-    <div id="diceBox" class="hide-box">
+    <div id="diceBox" class="hide-box hide">
         <div class="hide-box-inner">
             <h2>Player 3 please roll the dice!</h2>
             <img id="resultImg" src="./img/dice.png" alt="">
@@ -126,7 +128,14 @@
     -->
     <div id="questBox" class="hide-box hide">
         <div class="hide-box-inner">
+            <h3>Question Text</h3>
+            <button>A</button>
+            <button>B</button>
+            <button>C</button>
+            <button>D</button>
 
+            <button id="checkQuestBtn">Check</button>
+            <button id="nextQuestBtn">Next</button>
         </div>
     </div>
 
@@ -135,11 +144,27 @@
     -->
     <div id="itemBox" class="hide-box hide">
         <div class="hide-box-inner">
-
+            <img src="./img/item/lightning.png" alt="">
+            <button id="getItemBtn">Get Item</button>
+            <button id="nextItemBtn">Next</button>
         </div>
     </div>
 
+    <!-- 
+        get item
+    -->
 
+    <div id="endBox" class="hide-box hide">
+        <div class="hide-box-inner">
+            End screen
+
+            <p>First ###</p>
+            <p>Second ###</p>
+            <p>Third ###</p>
+        </div>
+    </div>
+
+    <script src="./js/revisedAuto.js"></script>
 
 </body>
 
