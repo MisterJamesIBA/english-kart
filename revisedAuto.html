@@ -17,6 +17,7 @@
         start screen
     -->
 
+    <img src="./img/board/make.png" id="backImg" style="display: none;" alt="back img">
     <canvas id="canvas"></canvas>
 
     <div id="startBox" class="hide-box">
@@ -119,7 +120,7 @@
             <h2>Player 3 please roll the dice!</h2>
             <img id="resultImg" src="./img/dice.png" alt="">
             <button id="rollBtn"><img src="./img/text/roll.png" alt=""></button>
-            <button id="rollNextBtn"><img src="./img/text/next.png" alt=""></button>
+            <button class="hide" id="rollNextBtn"><img src="./img/text/next.png" alt=""></button>
         </div>
     </div>
 
@@ -128,12 +129,13 @@
     -->
     <div id="questBox" class="hide-box hide">
         <div class="hide-box-inner">
-            <h3>Question Text</h3>
-            <button>A</button>
-            <button>B</button>
-            <button>C</button>
-            <button>D</button>
-
+            <h3 id="questText">Question Text</h3>
+            <div>
+                <button id="select0">OPTION A</button>
+                <button id="select1">OPTION B</button>
+                <button id="select2">OPTION C</button>
+                <button id="select3">OPTION D</button>
+            </div>
             <button id="checkQuestBtn">Check</button>
             <button id="nextQuestBtn">Next</button>
         </div>

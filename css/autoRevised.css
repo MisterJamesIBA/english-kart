@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
 .hide-box {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.8);
@@ -98,7 +103,7 @@ character select screen
     flex-direction: column;
     width: 100%;
     height: 70%;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
 
 #charCon div {
