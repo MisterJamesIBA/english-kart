@@ -230,6 +230,8 @@ let posList = [
     }
 ];
 
+const MOVE_TIME = 1000;
+const STEP = 30;
 
 const QUIZ = [
     {
@@ -254,8 +256,6 @@ const QUIZ = [
         ]
     }
 ]
-
-const STEP = 30;
 
 window.onload = function () {
 
@@ -285,10 +285,6 @@ window.onload = function () {
     let rollBtn = document.querySelector("#rollBtn");
     let rollNextBtn = document.querySelector("#rollNextBtn");
 
-    //quest
-    let checkQuestBtn = document.querySelector("#checkQuestBtn");
-    let nextQuestBtn = document.querySelector("#nextQuestBtn");
-
     // item
     let getItemBtn = document.querySelector("#getItemBtn");
     let nextItemBtn = document.querySelector("#nextItemBtn");
@@ -313,11 +309,38 @@ window.onload = function () {
         //questText
         let questText = this.document.querySelector("#questText");
         let selectQuest = QUIZ[Math.floor(Math.random() * QUIZ.length)];
+        let questCon = this.document.querySelector("#questCon");
+        questCon.innerHTML = "";
 
+        // set question text
         questText.innerHTML = selectQuest.text;
+
         selectQuest.options.forEach((value, i)=>{
-            let btn = this.document.querySelector(`#select${i}`);
+            let btn = document.createElement("button");
             btn.innerHTML = value;
+            questCon.appendChild(btn);
+            btn.addEventListener("click", ()=>{
+                questText.innerHTML = "correct answer";
+                let btn = this.document.createElement("button");
+                questCon.innerHTML = "";
+                if(value == selectQuest.answer){
+                    console.log('correct');
+                    btn.innerHTML = 'get an item';
+                    btn.addEventListener('click', ()=>{
+                        itemBox.classList.remove('hide');
+                    });
+                }
+                else {
+                    console.log('incorrect');
+                    btn.innerHTML = 'next player';
+                    btn.addEventListener('click', ()=>{
+
+                    });
+                }
+                questCon.innerHTML = "";
+                questCon.appendChild(btn);
+            });
+
         });
 
         questBox.classList.remove('hide');
@@ -394,6 +417,7 @@ window.onload = function () {
         }
 
         let index = 0;
+        let waitTime = moveDist * MOVE_TIME / moveList.length;
 
         let handle = setInterval(() => {
             let pos = moveList[index];
@@ -401,14 +425,10 @@ window.onload = function () {
             char.y = pos.y;
             index++;
             if (index >= moveList.length) {
+                // finish
                 clearInterval(handle);
-
-                // if dice show question
-                makeQuest();
-
-                // if item go to next turn
             }
-        }, 50);
+        }, waitTime);
 
     }
 
@@ -500,19 +520,16 @@ window.onload = function () {
         rollNextBtn.classList.remove('hide');
     });
 
-    // dive next button
+    // roll next button
     rollNextBtn.addEventListener("click", () => {
         diceBox.classList.add('hide');
         moveChar(moveDist, 0);
+        // go to question
+        setTimeout(()=>{
+            makeQuest();
+        }, Math.abs(moveDist + 0.5) * MOVE_TIME);
     });
 
-    // check answer for queston
-    checkQuestBtn.addEventListener("click", () => {
-
-    });
-    nextQuestBtn.addEventListener("click", () => {
-
-    });
 
     // item btns
     getItemBtn.addEventListener("click", () => {
